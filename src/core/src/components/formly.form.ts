@@ -1,4 +1,4 @@
-import { Component, DoCheck, OnChanges, Input, SimpleChanges, Optional, QueryList, ViewChildren } from '@angular/core';
+import { Component, DoCheck, OnChanges, Input, SimpleChanges, Optional, QueryList, ViewChildren, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup, FormArray, NgForm, FormGroupDirective } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from './formly.field.config';
 import { FormlyFormBuilder } from '../services/formly.form.builder';
@@ -27,6 +27,9 @@ export class FormlyForm implements DoCheck, OnChanges {
   /** @internal */
   @Input() buildForm: boolean = true;
 
+  @Output() modelWillChange: EventEmitter<void> = new EventEmitter();
+  @Output() modelDidChange: EventEmitter<void> = new EventEmitter();
+
   private initialModel: any;
 
   constructor(
@@ -41,6 +44,8 @@ export class FormlyForm implements DoCheck, OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.fields) {
+      this.modelWillChange.emit();
+
       this.model = this.model || {};
       this.form = this.form || (new FormGroup({}));
       this.setOptions();
@@ -48,8 +53,14 @@ export class FormlyForm implements DoCheck, OnChanges {
         this.formlyBuilder.buildForm(this.form, this.fields, this.model, this.options);
       }
       this.updateInitialValue();
+
+      this.modelDidChange.emit();
     } else if (changes.model && this.fields && this.fields.length > 0) {
+      this.modelWillChange.emit();
+
       this.form.patchValue(this.model);
+
+      this.modelDidChange.emit();
     }
   }
 
