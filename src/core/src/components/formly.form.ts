@@ -50,6 +50,7 @@ export class FormlyForm implements DoCheck, OnChanges {
       this.form = this.form || (new FormGroup({}));
       this.setOptions();
       if (this.buildForm !== false) {
+        (this.options as any).components = [];
         this.formlyBuilder.buildForm(this.form, this.fields, this.model, this.options);
       }
       this.updateInitialValue();
@@ -103,6 +104,12 @@ export class FormlyForm implements DoCheck, OnChanges {
   }
 
   private resetModel(model?: any) {
+    (this.options as any).components.forEach(component => {
+      if (component.onBeforePatchValue) {
+        component.onBeforePatchValue();
+      }
+    });
+
     model = isNullOrUndefined(model) ? this.initialModel : model;
     if (this.options.parentForm) {
       this.options.parentForm.resetForm(model);

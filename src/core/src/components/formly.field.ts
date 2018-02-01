@@ -122,6 +122,8 @@ export class FormlyField implements OnInit, OnChanges, OnDestroy {
 
       const fieldComponentRef = this.createFieldComponent();
       if (this.field.key) {
+        (this.options as any).components.push(fieldComponentRef.instance);
+
         let valueChanges = fieldComponentRef.instance.formControl.valueChanges;
         if (debounce > 0) {
           valueChanges = debounceTime.call(valueChanges, debounce);
