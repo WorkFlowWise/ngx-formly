@@ -104,6 +104,8 @@ export class FormlyForm implements DoCheck, OnChanges {
   }
 
   private resetModel(model?: any) {
+    this.modelWillChange.emit();
+
     (this.options as any).components.forEach(component => {
       if (component.onBeforePatchValue) {
         component.onBeforePatchValue();
@@ -119,6 +121,8 @@ export class FormlyForm implements DoCheck, OnChanges {
 
     this.resetFormGroup(model, this.form);
     this.resetFormModel(model, this.model);
+
+    this.modelDidChange.emit();
   }
 
   private resetFormModel(model: any, formModel: any, path?: (string | number)[]) {
