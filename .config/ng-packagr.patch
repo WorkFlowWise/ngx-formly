@@ -12,7 +12,7 @@ index cb48466..2f62191 100644
          compilerOptions.flatModuleId = ngPkg.fullPackageName;
          compilerOptions.flatModuleOutFile = `${ngPkg.flatModuleFileName}.js`;
          tsConfig['files'] = [ngPkg.entryFile];
-+        tsConfig['compilerOptions']['paths'] = { "@ngx-formly/core": ["../../../../../dist/core"] };
++        tsConfig['compilerOptions']['paths'] = { "wfw-ngx-formly": ["../../../../../dist/core"] };
          yield fs_extra_1.writeJson(outFile, tsConfig);
      });
  }

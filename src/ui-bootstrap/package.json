@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "tslib": "^1.7.1",
-    "@ngx-formly/core": "FORMLY-VERSION",
+    "wfw-ngx-formly": "FORMLY-VERSION",
     "bootstrap": "^4.0.0 || ^3.3.7"
   }
 }

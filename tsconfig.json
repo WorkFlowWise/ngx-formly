@@ -15,10 +15,10 @@
     "importHelpers": true,
     "paths": {
       // fix for #605
-      // TODO: Remove it after upgrading Angular to v.5      
+      // TODO: Remove it after upgrading Angular to v.5
       "@angular/*": ["../node_modules/@angular/*"],
-      
-      "@ngx-formly/core": ["./core/index"],
+
+      "wfw-ngx-formly": ["./core/index"],
       "@ngx-formly/bootstrap": ["./ui-bootstrap/index"],
       "@ngx-formly/material": ["./ui-material/index"]
     },
