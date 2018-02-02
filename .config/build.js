@@ -1,9 +1,7 @@
 const fs = require("fs"),
   execSync = require('child_process').execSync,
   packages = [
-    'core',
-    'bootstrap',
-    'material',
+    'core'
   ];
 
 // update `FORMLY-VERSION` in package.json for all sub-packages
