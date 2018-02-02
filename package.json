@@ -1,6 +1,6 @@
 {
-  "name": "@ngx-formly/common",
-  "version": "2.0.0-rc.17",
+  "name": "wfw-ngx-formly",
+  "version": "3.0.6-rc.2",
   "author": "Zama Khan Mohammed <mohammedzamakhan@gmail.com>",
   "contributors": [
     "Zama Khan Mohammed <mohammedzamakhan@gmail.com>",
@@ -15,7 +15,7 @@
     "commit": "npm run build && git-cz",
     "prepublish": "npm run build",
     "bundlesize": "bundlesize",
-    "build": "npm run build:core && npm run build:bootstrap && npm run build:material && node .config/build.js",
+    "build": "npm run build:core && node .config/build.js",
     "build:core": "ng-packagr -p src/core/ng-package.json",
     "build:bootstrap": "ng-packagr -p src/ui-bootstrap/ng-package.json",
     "build:material": "ng-packagr -p src/ui-material/ng-package.json",
