@@ -3,7 +3,7 @@
   "lib": {
     "entryFile": "index.ts",
       "externals": {
-        "@ngx-formly/core": "@ngx-formly/core"
+        "wfw-ngx-formly": "wfw-ngx-formly"
       }
   },
   "dest": "../../dist/bootstrap",

@@ -3,7 +3,7 @@
   "lib": {
     "entryFile": "index.ts",
       "externals": {
-        "@ngx-formly/core": "@ngx-formly/core",
+        "wfw-ngx-formly": "wfw-ngx-formly",
         "@angular/material/core": "ng.material.core",
         "@angular/material/form-field": "ng.material.form-field",
         "@angular/material/input": "ng.material.input",
