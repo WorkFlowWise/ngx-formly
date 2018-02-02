@@ -216,39 +216,4 @@ export class FormlyField implements OnInit, OnChanges, OnDestroy {
       this.options.fieldChanges.next(<FormlyValueChangeEvent> { field: this.field, type: 'hidden', value });
     }
   }
-
-  private get fieldKey() {
-    return this.field.key.split('.').pop();
-  }
-
-  private get fieldParentFormControl(): FormArray|FormGroup {
-      const paths = this.field.key.split('.');
-      paths.pop(); // remove last path
-
-      return (paths.length > 0 ? this.form.get(paths) : this.form) as any;
-  }
-
-  private addFieldControl() {
-    const parent = this.fieldParentFormControl,
-      model = (this.field.fieldGroup || this.field.fieldArray) ? this.model : getFieldModel(this.model, this.field, false);
-    if (this.field.formControl.value !== model) {
-      this.field.formControl.patchValue(model);
-    }
-
-    if (parent instanceof FormArray) {
-      parent.push(this.field.formControl);
-    } else if (parent instanceof FormGroup) {
-      parent.addControl(this.fieldKey, this.field.formControl);
-    }
-  }
-
-  private removeFieldControl() {
-    const parent = this.fieldParentFormControl;
-
-    if (parent instanceof FormArray) {
-      parent.removeAt(this.fieldKey as any);
-    } else if (parent instanceof FormGroup) {
-      parent.removeControl(this.fieldKey);
-    }
-  }
 }
