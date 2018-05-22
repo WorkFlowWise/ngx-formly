@@ -1,5 +1,5 @@
 {
-  "name": "@ngx-formly/common",
+  "name": "wfw-ngx-formly",
   "version": "4.7.2",
   "author": "Zama Khan Mohammed <mohammedzamakhan@gmail.com>",
   "contributors": [
@@ -13,7 +13,7 @@
     "commit": "npm run build && git-cz",
     "prepublish": "npm run build",
     "bundlesize": "bundlesize",
-    "build": "npm run build:core && npm run build:bootstrap && npm run build:material && npm run build:ionic && npm run build:primeng && npm run build:kendo && npm run build:schematics && node .config/build.js",
+    "build": "npm run build:core && node .config/build.js",
     "build:core": "ng build @ngx-formly/core",
     "build:bootstrap": "ng build @ngx-formly/bootstrap",
     "build:material": "ng build @ngx-formly/material",
@@ -29,8 +29,7 @@
     "build:demo": "ng build --prod --base-href=\"/ngx-formly/\"",
     "gh-pages": "npm run build:demo && npm run build:docs && ngh --dir dist/app --repo=https://GH_TOKEN@github.com/formly-js/ngx-formly.git",
     "test": "ng test @ngx-formly/core --browsers ChromeHeadless && ng test @ngx-formly/bootstrap --browsers ChromeHeadless && ng test @ngx-formly/material --browsers ChromeHeadless && cd src/schematics && npm run test",
-    "test:watch": "ng test @ngx-formly/core --watch",
-    "commitmsg": "commitlint -e $GIT_PARAMS"
+    "test:watch": "ng test @ngx-formly/core --watch"
   },
   "keywords": [
     "angular",

@@ -13,7 +13,7 @@
     "toggle": [{ "path": "toggle" }],
     "slider": [{ "path": "slider" }],
     "externals": {
-      "@ngx-formly/core": "@ngx-formly/core"
+      "wfw-ngx-formly": "wfw-ngx-formly"
     }
   }
 }
