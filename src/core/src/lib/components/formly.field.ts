@@ -100,6 +100,11 @@ export class FormlyField implements OnInit, OnChanges, DoCheck, AfterContentInit
         options: this.options,
     });
 
+    const optionsComponents = (this.options as any).components;
+    if (optionsComponents) {
+        optionsComponents.push(ref.instance);
+    }
+
     this.componentRefs.push(ref);
 
     return ref;
