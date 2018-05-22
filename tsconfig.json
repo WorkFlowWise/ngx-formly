@@ -17,6 +17,7 @@
       "dom"
     ],
     "paths": {
+      "wfw-ngx-formly": ["src/core/src,public_api"],
       "@ngx-formly/*": [
         "src/*/src/public_api"
       ],

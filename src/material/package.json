@@ -13,7 +13,7 @@
     "url": "https://github.com/formly-js/ngx-formly/issues"
   },
   "peerDependencies": {
-    "@ngx-formly/core": "FORMLY-VERSION",
+    "wfw-ngx-formly": "FORMLY-VERSION",
     "@angular/material": ">=5.0.0"
   }
 }

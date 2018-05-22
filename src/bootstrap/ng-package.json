@@ -5,7 +5,7 @@
   "lib": {
     "entryFile": "src/public_api.ts",
     "externals": {
-      "@ngx-formly/core": "@ngx-formly/core"
+      "wfw-ngx-formly": "wfw-ngx-formly"
     }
   }
 }
