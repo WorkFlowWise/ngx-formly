@@ -26,6 +26,8 @@ export class FormlyForm implements DoCheck, OnChanges, OnDestroy {
   @Input() fields: FormlyFieldConfig[] = [];
   @Input() options: FormlyFormOptions;
   @Output() modelChange = new EventEmitter<any>();
+  @Output() modelWillChange: EventEmitter<void> = new EventEmitter();
+  @Output() modelDidChange: EventEmitter<void> = new EventEmitter();
 
   /** @internal */
   @Input() isRoot = true;
@@ -52,6 +54,7 @@ export class FormlyForm implements DoCheck, OnChanges, OnDestroy {
     }
 
     if (changes.fields || changes.form) {
+      this.modelWillChange.emit();
       this.model = this.model || {};
       this.form = this.form || (new FormGroup({}));
       this.setOptions();
@@ -59,8 +62,11 @@ export class FormlyForm implements DoCheck, OnChanges, OnDestroy {
       this.formlyBuilder.buildForm(this.form, this.fields, this.model, this.options);
       this.trackModelChanges(this.fields);
       this.updateInitialValue();
+      this.modelDidChange.emit();
     } else if (changes.model) {
+      this.modelWillChange.emit();
       this.patchModel(this.model);
+      this.modelDidChange.emit();
     }
   }
 
@@ -152,6 +158,13 @@ export class FormlyForm implements DoCheck, OnChanges, OnDestroy {
   }
 
   private resetModel(model?: any) {
+    this.modelWillChange.emit();
+    (this.options as any).components.forEach(component => {
+      if (component.onBeforePatchValue) {
+        component.onBeforePatchValue();
+      }
+    });
+
     model = isNullOrUndefined(model) ? this.initialModel : model;
     this.resetFieldArray(this.fields, model);
 
@@ -164,6 +177,7 @@ export class FormlyForm implements DoCheck, OnChanges, OnDestroy {
     }
 
     (<any> this.options).resetTrackModelChanges();
+    this.modelDidChange.emit();
   }
 
   private resetFieldArray(fields: FormlyFieldConfig[], newModel: any) {

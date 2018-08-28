@@ -69,11 +69,23 @@ export class FormlyField implements OnInit, OnChanges, DoCheck, AfterContentInit
         options: this.options,
       });
     });
+    let optionsComponents = (this.options as any).components;
+    if (optionsComponents) {
+        optionsComponents.forEach(ref => {
+            Object.assign(ref.instance, {
+                model: this.model,
+                form: this.form,
+                field: this.field,
+                options: this.options,
+            });
+        });
+    }
   }
 
   ngOnDestroy() {
     this.lifeCycleHooks(this.lifecycle.onDestroy);
     this.componentRefs.forEach(componentRef => componentRef.destroy());
+    (this.options as any).components = [];
     this.componentRefs = [];
   }
 
@@ -101,7 +113,10 @@ export class FormlyField implements OnInit, OnChanges, DoCheck, AfterContentInit
     });
 
     this.componentRefs.push(ref);
-
+    let optionsComponents = (this.options as any).components;
+    if (optionsComponents) {
+      optionsComponents.push(ref.instance);
+    }
     return ref;
   }
 
